@@ -23,15 +23,16 @@ class FirestoreDatabase {
 
   //creates user document
   Future<void> addUser(String name) async {
-    Storage _storage = Storage();
+    //HAVE NOT SET UP Firebase Storage YET
+    //Storage _storage = Storage();
 
-    String url = await _storage.getDefaultProfilePic();
+    //String url = await _storage.getDefaultProfilePic();
 
     return users.doc(uid).set({
       'Name': name,
       'pet': '',
       'likedPets': [],
-      'profilePic': url,
+      //'profilePic': url,
     })
        .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
