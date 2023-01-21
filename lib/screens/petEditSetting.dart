@@ -294,10 +294,12 @@ class _PetEditSettingPageState extends State<PetEditSettingPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            OutlineButton(
-                              padding: EdgeInsets.symmetric(horizontal: 50),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(horizontal: 50),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
                               onPressed: () {
                                 setState(() {
                                   Navigator.pop(
@@ -312,7 +314,15 @@ class _PetEditSettingPageState extends State<PetEditSettingPage> {
                                       letterSpacing: 2.2,
                                       color: Colors.black)),
                             ),
-                            RaisedButton(
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color(0xFF6DAEDB), //s.purple,
+                                padding: EdgeInsets.symmetric(horizontal: 50),
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20)),
+
+                              ),
                               onPressed: () async {
                                 if (_formkey.currentState!.validate() &&
                                     (_pet.contactPhone.isNotEmpty || _pet.contactOther.isNotEmpty) &&
@@ -343,11 +353,6 @@ class _PetEditSettingPageState extends State<PetEditSettingPage> {
                                 }
                               },
 
-                              color: Color(0xFF6DAEDB), //s.purple,
-                              padding: EdgeInsets.symmetric(horizontal: 50),
-                              elevation: 2,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
                               child: Text(
                                 "SAVE",
                                 style: TextStyle(
@@ -596,16 +601,18 @@ class _PetEditSettingPageState extends State<PetEditSettingPage> {
   }
 
   Widget buildUploadButton() {
-    return RaisedButton(
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF6DAEDB), //s.purple,
+        padding: EdgeInsets.symmetric(horizontal: 25),
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)),
+      ),
       onPressed: () {
         selectImage();
       },
 
-      color: Color(0xFF6DAEDB), //s.purple,
-      padding: EdgeInsets.symmetric(horizontal: 25),
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)),
       child: Text(
         "Upload Images",
         style: TextStyle(

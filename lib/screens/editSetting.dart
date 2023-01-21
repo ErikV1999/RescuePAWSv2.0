@@ -198,10 +198,13 @@ class _EditSettingPageState extends State<EditSettingPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      OutlineButton(
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                      OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+
                         onPressed: () {},
                         child: Text("CANCEL",
                             style: TextStyle(
@@ -209,7 +212,15 @@ class _EditSettingPageState extends State<EditSettingPage> {
                                 letterSpacing: 2.2,
                                 color: Colors.black)),
                       ),
-                      RaisedButton(
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF6DAEDB),
+                          //s.purple,
+                          padding: EdgeInsets.symmetric(horizontal: 50),
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
                         onPressed: () async {
                           print("NAME: ${_user.Name}");
                           print("Email: $email");
@@ -236,12 +247,6 @@ class _EditSettingPageState extends State<EditSettingPage> {
 
 
                         },
-                        color: Color(0xFF6DAEDB),
-                        //s.purple,
-                        padding: EdgeInsets.symmetric(horizontal: 50),
-                        elevation: 2,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
                         child: Text(
                           "SAVE",
                           style: TextStyle(

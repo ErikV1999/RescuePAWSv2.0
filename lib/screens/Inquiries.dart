@@ -79,7 +79,7 @@ class InquiryButton extends StatelessWidget {
     name = names.first;
     return Container(
       height: 90.0,
-      child: RaisedButton.icon(
+      child: ElevatedButton.icon(
         onPressed: (){
           //this.color = Colors.grey;
         },
