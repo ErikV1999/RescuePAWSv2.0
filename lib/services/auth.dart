@@ -24,15 +24,20 @@ class AuthService {
     }
   }
 
+  User? getUser() {
+    return _auth.currentUser;
+  }
+
   //sign in
   Future signIn(String email, String password) async {
     try {
       UserCredential result =  await _auth.signInWithEmailAndPassword(
-          email: email, password: password
+          email: email,
+          password: password
       );
       return "Account Created";
 
-    } catch(e)  {
+    } on FirebaseAuthException catch(e)  {
       print(e.toString());
       return null;
     }

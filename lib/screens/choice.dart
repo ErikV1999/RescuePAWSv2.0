@@ -5,7 +5,10 @@ import 'package:rescuepaws/models/user.dart';
 import 'package:rescuepaws/screens/logout.dart';
 import 'package:rescuepaws/screens/pet_card.dart';
 import 'package:rescuepaws/screens/reg_pets.dart';
+import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
+import 'package:rescuepaws/services/FirestoreService.dart';
+import 'package:rescuepaws/services/auth.dart';
 import 'package:rescuepaws/widget/sidebar_widget.dart';
 
 class ChoicePage extends StatefulWidget {
@@ -14,17 +17,17 @@ class ChoicePage extends StatefulWidget {
 }
 
 class _ChoicePageState extends State<ChoicePage> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  AuthService _auth = AuthService();
 
-  SavedUser _user = SavedUser();
+  SavedUser savedUser = SavedUser();
   String regError = '';
 
   Future<bool> petValid() async {
-    final uid = _auth.currentUser!.uid;
-    FirestoreDatabase _firestore = FirestoreDatabase(uid: uid);
-    _user = await _firestore.getUserFromFirestore(uid);
+    final User? user = _auth.getUser();
+    FirestoreService firestore = FirestoreService(user: user);
+    savedUser = await firestore.getUserFromFirestore();
 
-    if (_user.pet.isEmpty) {
+    if (savedUser.pet.isEmpty) {
       return true;
     } else {
       return false;
@@ -70,6 +73,8 @@ class _ChoicePageState extends State<ChoicePage> {
                     '$regError',
                     style: TextStyle(color: Colors.black), //red),
                   ),
+
+                  _buildSignOut(),
                 ],
               ),
             ),
@@ -129,6 +134,34 @@ class _ChoicePageState extends State<ChoicePage> {
       ),
       child: Text(
         'Look for a Pet',
+        style: TextStyle(
+          fontSize: 40.0,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSignOut() {
+    return ElevatedButton(
+      onPressed: () {
+        _auth.signOut();
+
+        Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => WelcomePage(),
+          )
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF6DAEDB),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40.0),
+        ),
+        side: BorderSide(color: Colors.black, width: 2.0),
+        padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
+        //minimumSize: Size(248.0, 0),
+      ),
+      child: Text(
+        'Sign Out',
         style: TextStyle(
           fontSize: 40.0,
         ),
