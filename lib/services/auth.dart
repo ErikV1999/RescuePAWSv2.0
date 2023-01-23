@@ -35,6 +35,7 @@ class AuthService {
           email: email,
           password: password
       );
+
       return "Account Created";
 
     } on FirebaseAuthException catch(e)  {
@@ -45,13 +46,8 @@ class AuthService {
 
 
   //sign out
-  Future signOut() async {
-    try {
-      return await _auth.signOut();
-    } catch(e) {
-      print(e.toString());
-      return null;
-    }
+  Future<void> signOut() async {
+    return _auth.signOut();
   }
 
   //Change Password

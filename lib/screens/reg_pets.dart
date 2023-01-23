@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rescuepaws/models/pet.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:rescuepaws/widget/sidebar_widget.dart';
+import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 class RegisterPet extends StatefulWidget {
   const RegisterPet({Key? key}) : super(key: key);

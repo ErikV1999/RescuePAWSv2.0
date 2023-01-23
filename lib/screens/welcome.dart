@@ -62,6 +62,7 @@ class WelcomePage extends StatelessWidget {
                   primary: Color(0xFF6DAEDB), //(0xFF32936F),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50.0),
+
                   ),
                   side: BorderSide(color: Colors.black, width: 2.0),
                   padding: EdgeInsets.fromLTRB(55, 5, 50, 5),

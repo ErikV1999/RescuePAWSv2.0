@@ -9,7 +9,7 @@ import 'package:rescuepaws/models/user.dart';
 import 'package:rescuepaws/screens/setting.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
 import 'package:rescuepaws/services/auth.dart';
-import 'package:rescuepaws/widget/sidebar_widget.dart';
+import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 class EditSettingPage extends StatefulWidget {
   @override

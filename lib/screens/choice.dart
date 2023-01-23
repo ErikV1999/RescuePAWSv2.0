@@ -2,14 +2,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/models/user.dart';
-import 'package:rescuepaws/screens/logout.dart';
 import 'package:rescuepaws/screens/pet_card.dart';
 import 'package:rescuepaws/screens/reg_pets.dart';
 import 'package:rescuepaws/screens/welcome.dart';
-import 'package:rescuepaws/services/DatabaseService.dart';
 import 'package:rescuepaws/services/FirestoreService.dart';
 import 'package:rescuepaws/services/auth.dart';
-import 'package:rescuepaws/widget/sidebar_widget.dart';
+import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 class ChoicePage extends StatefulWidget {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
-import 'package:rescuepaws/widget/sidebar_widget.dart';
+import 'package:rescuepaws/widgets/sidebar_widget.dart';
 import 'package:rescuepaws/services/auth.dart';
 
 

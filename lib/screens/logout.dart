@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rescuepaws/widget/sidebar_widget.dart';
+import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 
 class LogoutPage extends StatefulWidget {

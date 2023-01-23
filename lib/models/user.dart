@@ -6,7 +6,7 @@ class SavedUser {
   String pet = '';
   String profilePic = '';
 
-  SetUser(Map<String, dynamic> data) {
+  void SetUser(Map<String, dynamic> data) {
     Name = data['Name'];
     likedPets = data['likedPets'];
     pet = data['pet'];
