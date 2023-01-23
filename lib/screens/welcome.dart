@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/signin.dart';
 import 'package:rescuepaws/screens/temp_reg.dart';
+import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -24,55 +25,25 @@ class WelcomePage extends StatelessWidget {
           Expanded(child: SizedBox(height: 0)),
           Center(
             heightFactor:  1,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignIn()),
-                );
+            child: CustomRaisedButton(
+              onButtonPress: () => {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn())),
               },
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF6DAEDB), //(0xFF32936F),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                side: BorderSide(color: Colors.black, width: 2.0),
-                padding: EdgeInsets.fromLTRB(55, 5, 50, 5),
-                minimumSize: Size(248.0, 0),
-              ),
-              child: Text(
-                'Sign In',
-                style: TextStyle(
-                  fontSize: 40.0,
-                ),
-              ),
+              title: 'Sign In',
+              leftPadding: 55,
+              rightPadding: 55,
             ),
           ),
 
           Center(
             heightFactor:  2.5,
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Register()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF6DAEDB), //(0xFF32936F),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0),
-
-                  ),
-                  side: BorderSide(color: Colors.black, width: 2.0),
-                  padding: EdgeInsets.fromLTRB(55, 5, 50, 5),
-                ),
-                child: Text(
-                  'Register',
-                  style: TextStyle(
-                    fontSize: 40.0,
-                  ),
-                ),
+            child: CustomRaisedButton(
+              onButtonPress: () => {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Register())),
+              },
+              title: 'Register',
+              leftPadding: 55,
+              rightPadding: 55,
             ),
           ),
         ],

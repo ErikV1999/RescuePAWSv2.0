@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/choice.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super (key: key);
@@ -76,7 +77,28 @@ class _SignInState extends State<SignIn> {
                             ),
                             Container(
                               padding: EdgeInsets.fromLTRB(40, 60, 40, 0),
-                              child: _buildSignInButton(),
+                              child: CustomRaisedButton(
+                                onButtonPress: () async {
+                                  if(_formKey.currentState!.validate()){
+                                    dynamic result = await _auth.signIn(email, password);
+                                    if(result == null) {
+                                      setState(() {
+                                        error = 'Invalid Credentials';
+                                      });
+                                    } else {
+                                      setState(() {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => ChoicePage()),
+                                        );
+                                      });
+                                    }
+                                  }
+                                },
+                                leftPadding: 50,
+                                rightPadding: 50,
+                                title: 'Sign In',
+                              )
                             ),
 
                           ],
@@ -151,43 +173,6 @@ class _SignInState extends State<SignIn> {
         onChanged: (val) {
           setState(() => password = val);
         }
-    );
-  }
-
-  Widget _buildSignInButton() {
-    return ElevatedButton(
-      onPressed: () async {
-        if(_formKey.currentState!.validate()){
-          dynamic result = await _auth.signIn(email, password);
-          if(result == null) {
-            setState(() {
-              error = 'Invalid Credentials';
-            });
-          } else {
-            setState(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChoicePage()),
-              );
-            });
-          }
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF6DAEDB),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        side: BorderSide(color: Colors.black, width: 2.0),
-        padding: EdgeInsets.fromLTRB(30, 0, 30, 5),
-        minimumSize: Size(248.0, 0),
-      ),
-      child: Text(
-        'Sign In',
-        style: TextStyle(
-          fontSize: 45.0,
-        ),
-      ),
     );
   }
 
