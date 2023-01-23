@@ -7,14 +7,15 @@ import 'package:rescuepaws/screens/reg_pets.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/FirestoreService.dart';
 import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
-class ChoicePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _ChoicePageState createState() => _ChoicePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ChoicePageState extends State<ChoicePage> {
+class _HomePageState extends State<HomePage> {
   AuthService _auth = AuthService();
 
   SavedUser savedUser = SavedUser();
@@ -62,11 +63,38 @@ class _ChoicePageState extends State<ChoicePage> {
               padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
               child: Column(
                 children: [
-                  _buildLook(),
+                  CustomRaisedButton(
+                      onButtonPress: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => PetCard()));
+                      },
+                    title: 'Look for a Pet',
+                    leftPadding: 25,
+                    rightPadding: 25,
+                  ),
+
                   SizedBox(
                     height: 40,
                   ),
-                  _buildRegisterPet(),
+
+                  CustomRaisedButton(
+                      onButtonPress: () async {
+                        bool valid = await petValid();
+                        if (valid) {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => RegisterPet()));
+                        } else {
+                          setState(() {
+                            regError =
+                            '\nOnly 1 pet per user can be registered. Delete current pet to register a new one.';
+                          });
+                        }
+                      },
+                    title: 'Register a Pet',
+                    leftPadding: 25,
+                    rightPadding: 25,
+                  ),
+
                   Text(
                     '$regError',
                     style: TextStyle(color: Colors.black), //red),

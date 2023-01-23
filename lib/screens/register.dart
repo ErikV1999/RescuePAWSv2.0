@@ -1,8 +1,9 @@
 //user registration
 import 'package:flutter/material.dart';
-import 'package:rescuepaws/screens/choice.dart';
+import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Color(0xFF32936F),
         elevation: 1,
@@ -47,23 +49,12 @@ class _RegisterState extends State<Register> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
         color: Color(0xFF32936F),
         child: ListView(
           children: [
-            Image.asset('assets/rescuepaws_title.png'),
-           /* Center(
-              child: Text(
-                'Register',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 50,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
+            Image.asset('assets/rescuepaws_title.png', fit: BoxFit.fitHeight),
 
-            */
             Container(
               padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
               child: Form(
@@ -91,7 +82,29 @@ class _RegisterState extends State<Register> {
                       style: TextStyle(color: Colors.red, fontSize: 14.0),
                     ),
 
-                    _buildRegisterButton(),
+                    CustomRaisedButton(
+                        onButtonPress: () async {
+                          if (_formkey.currentState!.validate()) {
+                            dynamic result = await _auth.createNewUser(email, password, name);
+
+                            if (result == null) {
+                              setState(() {
+                                error = 'Please supply a valid email';
+                              });
+                            } else {
+                              setState(() {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => HomePage()),
+                                );
+                              });
+                            }
+                          }
+                        },
+                      leftPadding: 50,
+                      rightPadding: 50,
+                      title: 'Register',
+                    ),
                   ],
                 ),
               ),
@@ -230,7 +243,7 @@ class _RegisterState extends State<Register> {
             setState(() {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChoicePage()),
+                MaterialPageRoute(builder: (context) => HomePage()),
               );
             });
           }

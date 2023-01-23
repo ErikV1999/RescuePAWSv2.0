@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rescuepaws/screens/choice.dart';
+import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/screens/setting.dart';
 import 'package:rescuepaws/screens/Inquiries.dart';
 
@@ -59,7 +59,7 @@ class SidebarWidget extends StatelessWidget {
     switch (index) {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ChoicePage(),
+          builder: (context) => HomePage(),
         ));
         break;
 
@@ -77,7 +77,7 @@ class SidebarWidget extends StatelessWidget {
 
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ChoicePage(),
+          builder: (context) => HomePage(),
         ));
         break;
     }

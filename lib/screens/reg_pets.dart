@@ -1,7 +1,7 @@
 //pet registration 
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:rescuepaws/screens/choice.dart';
+import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -533,7 +533,7 @@ class _RegisterPetState extends State<RegisterPet> {
             uploadImage();
             Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => ChoicePage()),
+              MaterialPageRoute(builder: (context) => HomePage()),
             );
           });
         } else {

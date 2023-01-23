@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/signin.dart';
-import 'package:rescuepaws/screens/temp_reg.dart';
+import 'package:rescuepaws/screens/register.dart';
 import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class WelcomePage extends StatelessWidget {
