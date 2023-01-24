@@ -7,7 +7,7 @@ import 'package:rescuepaws/screens/petEditSetting.dart';
 import 'package:rescuepaws/screens/re_signin.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 class SettingsPage extends StatefulWidget {

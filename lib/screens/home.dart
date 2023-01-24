@@ -6,7 +6,7 @@ import 'package:rescuepaws/screens/pet_card.dart';
 import 'package:rescuepaws/screens/reg_pets.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import 'package:rescuepaws/services/FirestoreService.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 import 'package:rescuepaws/widgets/sidebar_widget.dart';
 

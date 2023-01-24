@@ -9,7 +9,7 @@ import 'package:rescuepaws/models/pet.dart';
 import 'package:rescuepaws/models/user.dart';
 import 'package:rescuepaws/screens/setting.dart';
 import 'package:rescuepaws/services/DatabaseService.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:rescuepaws/widgets/sidebar_widget.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 

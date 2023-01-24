@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/screens/welcome.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class Register extends StatefulWidget {
@@ -229,41 +229,4 @@ class _RegisterState extends State<Register> {
         });
   }
 
-  Widget _buildRegisterButton() {
-    return ElevatedButton(
-      onPressed: () async {
-        if (_formkey.currentState!.validate()) {
-          dynamic result = await _auth.createNewUser(email, password, name);
-
-          if (result == null) {
-            setState(() {
-              error = 'Please supply a valid email';
-            });
-          } else {
-            setState(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              );
-            });
-          }
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        primary: Color(0xFF6DAEDB),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        side: BorderSide(color: Colors.black, width: 2.0),
-        padding: EdgeInsets.fromLTRB(55, 5, 50, 5),
-        minimumSize: Size(248.0, 0),
-      ),
-      child: Text(
-        'Register',
-        style: TextStyle(
-          fontSize: 45.0,
-        ),
-      ),
-    );
-  }
 }

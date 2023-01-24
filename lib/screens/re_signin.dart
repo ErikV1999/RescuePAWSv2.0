@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/editSetting.dart';
 import 'package:rescuepaws/screens/setting.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 
 class ReSignIn extends StatefulWidget {
   const ReSignIn({Key? key}) : super (key: key);

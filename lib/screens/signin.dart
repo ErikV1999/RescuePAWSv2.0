@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/screens/welcome.dart';
-import 'package:rescuepaws/services/auth.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:rescuepaws/widgets/CustomRaisedButton.dart';
 
 class SignIn extends StatefulWidget {
