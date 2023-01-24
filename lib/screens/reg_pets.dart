@@ -45,7 +45,7 @@ class _RegisterPetState extends State<RegisterPet> {
     String petID = firestore.createPet(_pet);
 
     _filePaths.forEach((file) {
-      final UploadTask task = storage.uploadFileToStorage(file);
+      final UploadTask task = storage.uploadFileToStorage(file, petID);
       task.snapshotEvents.listen((event) {
         if (event.state == TaskState.success) {
           event.ref.getDownloadURL().then(
