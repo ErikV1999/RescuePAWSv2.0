@@ -2,13 +2,15 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:rescuepaws/screens/home.dart';
-import 'package:rescuepaws/services/DatabaseService.dart';
+import 'package:rescuepaws/services/AuthService.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rescuepaws/models/pet.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:rescuepaws/services/FirestoreService.dart';
+import 'package:rescuepaws/services/StorageService.dart';
 import 'package:rescuepaws/widgets/sidebar_widget.dart';
 
 class RegisterPet extends StatefulWidget {
@@ -32,21 +34,22 @@ class _RegisterPetState extends State<RegisterPet> {
 
   List<File> _filePaths = [];
   List<String> _fileNames = [];
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  Storage _storage = Storage();
+
+  AuthService auth = AuthService();
 
   Future uploadImage() async {
-    final uid = _auth.currentUser!.uid;
-    FirestoreDatabase _firestore = FirestoreDatabase(uid: uid);
-    String petID = _firestore.createPet(_pet);
-    _firestore.savePet(petID);
+    final User? user = auth.getUser();
+    FirestoreService firestore = FirestoreService(user: user);
+    StorageService storage = StorageService(user: user);
+
+    String petID = firestore.createPet(_pet);
 
     _filePaths.forEach((file) {
-      final UploadTask task = _storage.uploadFileToStorage(file);
+      final UploadTask task = storage.uploadFileToStorage(file);
       task.snapshotEvents.listen((event) {
         if (event.state == TaskState.success) {
           event.ref.getDownloadURL().then(
-              (imageUrl) => _firestore.writeFileToFirestore(imageUrl, petID));
+              (imageUrl) => firestore.writeImagetoUser(imageUrl, petID));
         }
       });
     });
@@ -312,7 +315,7 @@ class _RegisterPetState extends State<RegisterPet> {
           borderSide: BorderSide(width: 3.0),
         ),
       ),
-      value: _pet.type,
+      value: _pet.animalType,
       items: animalTypes.map((String val) {
         return DropdownMenuItem(
           value: val,
@@ -321,8 +324,8 @@ class _RegisterPetState extends State<RegisterPet> {
       }).toList(),
       onChanged: (val) {
         setState(() {
-          _pet.type = val as String;
-          print('Animal type = ${_pet.type}');
+          _pet.animalType = val as String;
+          print('Animal type = ${_pet.animalType}');
         });
       },
     );
@@ -512,7 +515,7 @@ class _RegisterPetState extends State<RegisterPet> {
             style: TextStyle(fontSize: 17.0),
           ),
           style: ElevatedButton.styleFrom(
-            primary: Color(0xFF6DAEDB),
+            backgroundColor: Color(0xFF6DAEDB),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
@@ -557,7 +560,7 @@ class _RegisterPetState extends State<RegisterPet> {
         style: TextStyle(fontSize: 45.0),
       ),
       style: ElevatedButton.styleFrom(
-        primary: Color(0xFF6DAEDB),
+        backgroundColor: Color(0xFF6DAEDB),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),
         ),
@@ -568,44 +571,5 @@ class _RegisterPetState extends State<RegisterPet> {
     );
   }
 
-/*
-  Widget _buildRegisterButton() {
-    return ElevatedButton(
-      onPressed: () async {
-        if(_formkey.currentState!.validate()){
-          dynamic result = await _auth.createNewUser(email, password, name);
-
-          if(result == null) {
-            setState(() {
-              error = 'please supply a valid email';
-            });
-          } else {
-            setState(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChoicePage()),
-              );
-            });
-          }
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        primary: Color(0xFF6DAEDB),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        side: BorderSide(color: Colors.black, width: 2.0),
-        padding: EdgeInsets.fromLTRB(55, 5, 50, 5),
-        minimumSize: Size(248.0, 0),
-      ),
-      child: Text(
-        'Register',
-        style: TextStyle(
-          fontSize: 45.0,
-        ),
-      ),
-    );
-  }
- */
 
 }

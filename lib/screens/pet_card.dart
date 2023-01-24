@@ -203,7 +203,7 @@ class _PetCardState extends State<PetCard> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text("Name: ${_pet.petName} (${_pet.gender})", style: TextStyle(color: Colors.white),),
-                                        _buildPetInfo("Type of Animal", _pet.type),
+                                        _buildPetInfo("Type of Animal", _pet.animalType),
                                         _buildPetInfo("Age", _pet.age),
                                         _buildPetInfo("Species/Breed", _pet.species),
 

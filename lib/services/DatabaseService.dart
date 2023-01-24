@@ -42,21 +42,9 @@ class FirestoreDatabase {
 
   //creates pet document and stores in firestore database
   String createPet(Pet pet) {
-    DocumentReference docRef = pets.doc();
-    String petID = docRef.id;
-    docRef.set({
-      'owner': uid,
-      'petName': pet.petName,
-      'age': pet.age,
-      'animalType': pet.type,
-      'species': pet.species,
-      'gender': pet.gender,
-      'isNeutered': pet.isNeutered,
-      'contactName': pet.contactName,
-      'contactPhone': pet.contactPhone,
-      'contactOther': pet.contactOther,
-      'images': [],
-    });
+    DocumentReference petRef = pets.doc();
+    String petID = petRef.id;
+    petRef.set(pet.toMap());
     return petID;
   }
 
