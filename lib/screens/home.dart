@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rescuepaws/models/user.dart';
+import 'package:rescuepaws/screens/newPetCard.dart';
 import 'package:rescuepaws/screens/pet_card.dart';
 import 'package:rescuepaws/screens/reg_pets.dart';
 import 'package:rescuepaws/screens/welcome.dart';
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                   CustomRaisedButton(
                       onButtonPress: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => PetCard()));
+                            MaterialPageRoute(builder: (context) => NewPetCard()));
                       },
                     title: 'Look for a Pet',
                     leftPadding: 25,

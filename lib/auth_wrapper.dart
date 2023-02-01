@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:rescuepaws/screens/welcome.dart';
 import  'package:flutter/material.dart';
 import 'package:rescuepaws/screens/home.dart';
@@ -8,17 +9,12 @@ class  AuthWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if(snapshot.hasData) {
-            return HomePage();
-          } else {
-            return WelcomePage();
-          }
-        },
-      )
-    );
+    User user = Provider.of<User>(context);
+
+    if(user != null) {
+      return HomePage();
+    } else {
+      return WelcomePage();
+    }
   }
 }

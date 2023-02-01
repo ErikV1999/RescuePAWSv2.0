@@ -38,4 +38,25 @@ class FirestoreService {
     petsRef.doc(petID).update({'images': FieldValue.arrayUnion([imageUrl])});
   }
 
+  Future<List<String>> getPetCollection()  async {
+    List<String> documents = [];
+    QuerySnapshot snapshot = await petsRef.get();
+
+    for(int i = 0; i < snapshot.docs.length; i++) {
+      documents.add(snapshot.docs[i].id);
+    }
+
+    return documents;
+  }
+
+  Future<Pet> getPetById(String petID) async {
+
+    DocumentSnapshot snapshot = await petsRef.doc(petID).get();
+    Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+    Pet _pet = Pet.fromMap(data);
+
+    return _pet;
+  }
+
+
 }

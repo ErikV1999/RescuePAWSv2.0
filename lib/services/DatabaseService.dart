@@ -98,11 +98,11 @@ class FirestoreDatabase {
   }
 
   Future<Pet> getPet(String petID) async {
-    Pet _pet = Pet();
+    Pet _pet = Pet.templ();
 
     DocumentSnapshot snapshot = await pets.doc(petID).get();
     Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-    _pet.SetPet(data);
+
 
     return _pet;
 

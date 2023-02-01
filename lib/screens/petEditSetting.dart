@@ -27,7 +27,7 @@ class _PetEditSettingPageState extends State<PetEditSettingPage> {
 
   late FirestoreDatabase _firestore;
   AuthService _auth = AuthService();
-  Pet _pet = Pet();
+  Pet _pet = Pet.templ();
   SavedUser _user = SavedUser();
   Storage _storage = Storage();
   

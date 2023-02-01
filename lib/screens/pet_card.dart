@@ -23,7 +23,7 @@ class _PetCardState extends State<PetCard> {
   late FirestoreDatabase _firestore;
   List<String> docID = [];
   late String randomPet;
-  Pet _pet = Pet();
+  Pet _pet = Pet.templ();
   bool isFirst = true;
   bool isLiked = false;
   late String currentPet;

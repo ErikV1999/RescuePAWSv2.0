@@ -1,6 +1,7 @@
 //pet registration 
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:rescuepaws/screens/home.dart';
 import 'package:rescuepaws/services/AuthService.dart';
 import 'package:file_picker/file_picker.dart';
@@ -25,13 +26,13 @@ class _RegisterPetState extends State<RegisterPet> {
   final maskFormatter = new MaskTextInputFormatter(
       mask: '###-###-####', filter: {"#": RegExp(r'[0-9]')});
 
-  Pet _pet = Pet();
-  List<String> animalTypes = ['dog', 'cat', 'reptile', 'other'];
-  int minUpload = 3;
+  Pet _pet = Pet.templ();
+  int minUpload = 1;
   String contactError = '';
   String selectError = '';
   String formError = '';
 
+  List<String> animalTypes = ['dog', 'cat', 'reptile', 'other'];
   List<File> _filePaths = [];
   List<String> _fileNames = [];
 
